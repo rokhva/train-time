@@ -13,16 +13,73 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- css styling -->
-    <link rel="stylesheet" href="assets/style/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/style/css/style.css"> -->
 </head>
 <body>
 
-    
+    <div class="jumbotron jumbotron-fluid mb-0">
+        <div class="container">
+          <h1 class="display-4">TRAINS!</h1>
+          <p class="lead">Take a look at some train times</p>
+        </div>
+      </div>
+
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Train Name</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Frequency (min)</th>
+            <th scope="col">Next Arrival</th>
+            <th scope="col">Minutes Away</th>
+            <!-- <th scope="col">Total Billed</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- <th scope="row">1</th>
+            <td>Mark Otto</td>
+            <td>Role</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td> -->
+          </tr>
+        </tbody>
+      </table>
+
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Train Name</label>
+          <input id = "name" class="form-control" id="exampleFormControlInput1" placeholder="Thomas" >
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Destination</label>
+            <input id = "destination" class="form-control" id="exampleFormControlInput1" placeholder="Bermuda">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">First Train Time (HH:mm - Military Time)</label>
+            <input  id = "first-time" class="form-control" id="exampleFormControlInput1" placeholder="12:50">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Frequency (min) </label>
+            <input id = "min" type="text" class="form-control" id="inputAddress" placeholder="35">
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+      </form>
 
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+     <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
+    
     <script src="assets/javascript/script.js"></script>
 </body>
 </html>
