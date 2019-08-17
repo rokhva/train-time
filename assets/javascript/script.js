@@ -13,6 +13,12 @@
 
   let database = firebase.database();
 
+  $(document).ready(function(){
+    let loginTime = moment();
+    console.log(loginTime);
+  })
+
+  //on click listener for when submit button is pressed. Grabs info and sends it to Firebase
   $(".btn").on("click", function(event){
     event.preventDefault();
     console.log("hi");
@@ -23,16 +29,51 @@
     
     database.ref().push({
         name: name,
-        role: destination,
-        date: time,
-        months: min,
+        destination: destination,
+        time: time,
+        min: min,
         // dateAdded: firebase.database.ServerValue.TIMESTAMP,
     })
-
+    //clears values once the submit button has been pressed
     $("#name").val("");
     $("#destination").val("");
     $("#first-time").val("");
     $("#min").val("");
 })
 
-  
+database.ref().on("child_added", function(snapshot){
+  console.log(snapshot);
+  let newRow = $("<tr>");
+  let newName = $("<td>").text(snapshot.val().name);
+  let newDestination = $("<td>").text(snapshot.val().destination);
+  // var newTime = $("<td>").text(snapshot.val().time);
+  let newMin = $("<td>").text(snapshot.val().min);
+
+  newRow.append(newName, newDestination, newMin);
+  $("tbody").append(newRow);
+
+
+  //grabbing user value from form for first time of train
+  let firstTime = snapshot.val().time;
+  console.log(firstTime);
+
+  //grabbing user value from form for frequency of train
+  let frequency = snapshot.val().min;
+  console.log(frequency);
+
+  //feeding the time format to moment
+  let parse = moment(firstTime, "HH:mm");
+  console.log(parse);
+
+  let diffTime = moment().diff(moment(parse), "minutes");
+  console.log("DIFFERENCE IN TIME: " + diffTime);
+
+  let timeRemain = diffTime % frequency;
+
+  let minAway = Math.abs(firstTime - timeRemain);
+  console.log("MINUTES TILL TRAIN: " + minAway);
+})
+
+// function timeMath (){
+
+// }
