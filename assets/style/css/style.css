@@ -2,29 +2,74 @@
     box-sizing: border-box;
 }
 
-form{
-    width: 70%;
-    padding-top: 32px;
-    border: 2px #343a40 solid;
-    border-radius: 8px;
+body{
+    background-color: black;
 }
 
-.flexContainer{
-    display: flex;
-}
-
-table{
-    padding-top: 32px;
-    border-radius: 8px;
+.jumbotron{
+ background-color: salmon;
+ color: white;
+ 
 }
 
 h1{
     text-align: center;
+    font-family: 'Ultra', serif;
+    letter-spacing: 10px;
 }
 
 p{
     text-align: center;
 }
+
+form{
+    width: 70%;
+    padding-top: 32px;
+    border: 2px #343a40 solid;
+    border-radius: 8px;
+    background-color: #343a40;
+    height: 432px; 
+}
+
+label{
+    color:white;
+}
+
+input{
+    background-color:black !important; 
+    border: none !important;
+    color: white !important;
+    outline-color: #88d3ce solid !important;
+
+}
+
+.form-control:focus {
+    border-color: #88d3ce;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 211, 215, 0.6);
+  }
+
+.flexContainer{
+    display: flex;
+}
+
+#table{
+    padding-top: 32px;
+    border-radius: 8px;
+    max-height: 10px !important;
+    overflow: scroll;
+}
+
+#tableRows{
+    max-height: 5px !important;
+    overflow: scroll !important;
+}
+
+tbody{
+    max-height: 50px !important;
+    overflow: scroll !important;
+}
+
+
 
 .btn{
     background-color: salmon;
@@ -34,11 +79,18 @@ p{
 }
 
 .btn:hover{
-    background-color: rgb(10, 223, 220);
+    background-color: #88d3ce;
 }
 
 .btn:active{
-    background-color: rgb(10, 223, 220);
+    background-color: #88d3ce;
 }
 
+th{
+    text-transform: Uppercase !important;
+    letter-spacing: 2px;
+    font-size: 11px;
+    border-bottom: 2px white solid !important;
+    padding: 20px !important;
+}
 
