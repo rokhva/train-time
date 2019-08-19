@@ -11,32 +11,35 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
   let database = firebase.database();
   let loginTime = 0;
 
   $(document).ready(function(){
     loginTime = moment().format("HH:mm");
     console.log(loginTime);
-
-
   })
 
   //on click listener for when submit button is pressed. Grabs info and sends it to Firebase
   $(".btn").on("click", function(event){
+    //prevents page from reloading constantly
     event.preventDefault();
     console.log("hi");
+
+    //next four lines grab the all the user values from the form
     let name = $("#name").val();
     let destination = $("#destination").val();
-    let time = $("#first-time").val(); // need to store this as a time in fire base, use moment to convert?
+    let time = $("#first-time").val();
     let min= $("#min").val();
     
+    //store the grabbed values in firebase
     database.ref().push({
         name: name,
         destination: destination,
         time: time,
         min: min,
-        // dateAdded: firebase.database.ServerValue.TIMESTAMP,
     })
+
     //clears values once the submit button has been pressed
     $("#name").val("");
     $("#destination").val("");
@@ -44,15 +47,20 @@
     $("#min").val("");
 })
 
+//grabs only the new information in firebase
 database.ref().on("child_added", function(snapshot){
   console.log(snapshot);
+
+  //creates a new row
   let newRow = $("<tr>");
+  //grabs the value out of firebase and puts in a new table col (next 3 lines)
   let newName = $("<td>").text(snapshot.val().name);
   let newDestination = $("<td>").text(snapshot.val().destination);
-  // var newTime = $("<td>").text(snapshot.val().time);
   let newMin = $("<td>").text(snapshot.val().min);
 
+  //appends all the values and colomns into the new row
   newRow.append(newName, newDestination, newMin);
+  //and then adds them to the table body
   $("tbody").append(newRow);
 
 

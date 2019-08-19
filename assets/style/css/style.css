@@ -4,6 +4,7 @@
 
 body{
     background-color: black;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .jumbotron{
@@ -86,11 +87,19 @@ tbody{
     background-color: #88d3ce;
 }
 
+.btn:focus{
+    background-color: #3fb1aa;
+}
+
 th{
     text-transform: Uppercase !important;
     letter-spacing: 2px;
     font-size: 11px;
     border-bottom: 2px white solid !important;
     padding: 20px !important;
+}
+
+td{
+    padding-left: 20px !important;
 }
 
