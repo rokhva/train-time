@@ -12,10 +12,13 @@
   firebase.initializeApp(firebaseConfig);
 
   let database = firebase.database();
+  let loginTime = 0;
 
   $(document).ready(function(){
-    let loginTime = moment();
+    loginTime = moment().format("HH:mm");
     console.log(loginTime);
+
+
   })
 
   //on click listener for when submit button is pressed. Grabs info and sends it to Firebase
@@ -62,7 +65,7 @@ database.ref().on("child_added", function(snapshot){
   console.log(frequency);
 
   //feeding the time format to moment
-  let parse = moment(firstTime, "HH:mm");
+  let parse = moment(firstTime, "HH:mm").subtract(1, "years");;
   console.log(parse);
 
   let diffTime = moment().diff(moment(parse), "minutes");
@@ -70,10 +73,12 @@ database.ref().on("child_added", function(snapshot){
 
   let timeRemain = diffTime % frequency;
 
-  let minAway = Math.abs(firstTime - timeRemain);
-  console.log("MINUTES TILL TRAIN: " + minAway);
-})
+  let minUntilNext = frequency - timeRemain;
+  console.log("MINUTES TILL TRAIN: " + minUntilNext);
 
-// function timeMath (){
+  let nextTrain = moment().add(minUntilNext, "minutes");
+  console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
-// }
+  let newArrTime = moment(nextTrain).format("hh:mm");
+
+});

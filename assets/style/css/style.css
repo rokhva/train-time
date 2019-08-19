@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+form{
+    width: 70%;
+    padding-top: 32px;
+    border: 2px #343a40 solid;
+    border-radius: 8px;
+}
+
+.flexContainer{
+    display: flex;
+}
+
+table{
+    padding-top: 32px;
+    border-radius: 8px;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+.btn{
+    background-color: salmon;
+    border: none;
+    width: 100px;
+    border-radius: 32px;
+}
+
+.btn:hover{
+    background-color: rgb(10, 223, 220);
+}
+
+.btn:active{
+    background-color: rgb(10, 223, 220);
+}
+
+
