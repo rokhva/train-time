@@ -25,19 +25,21 @@
     //prevents page from reloading constantly
     event.preventDefault();
     console.log("hi");
-
+   
     //next four lines grab the all the user values from the form
     let name = $("#name").val();
     let destination = $("#destination").val();
     let time = $("#first-time").val();
-    let min= $("#min").val();
-    
+    let min = $("#min").val();
+
+  if (name !== "" || destination !== "" || time !== "" || min !== ""){
     //store the grabbed values in firebase
     database.ref().push({
         name: name,
         destination: destination,
         time: time,
         min: min,
+        
     })
 
     //clears values once the submit button has been pressed
@@ -45,12 +47,14 @@
     $("#destination").val("");
     $("#first-time").val("");
     $("#min").val("");
+  }
 })
 
 //grabs only the new information in firebase
 database.ref().on("child_added", function(snapshot){
   console.log(snapshot);
-
+  
+  
   //creates a new row
   let newRow = $("<tr>");
   //grabs the value out of firebase and puts in a new table col (next 3 lines)
@@ -58,11 +62,8 @@ database.ref().on("child_added", function(snapshot){
   let newDestination = $("<td>").text(snapshot.val().destination);
   let newMin = $("<td>").text(snapshot.val().min);
 
-  //appends all the values and colomns into the new row
-  newRow.append(newName, newDestination, newMin);
-  //and then adds them to the table body
-  $("tbody").append(newRow);
-
+ 
+  
 
   //grabbing user value from form for first time of train
   let firstTime = snapshot.val().time;
@@ -88,5 +89,14 @@ database.ref().on("child_added", function(snapshot){
   console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
   let newArrTime = moment(nextTrain).format("hh:mm");
+  console.log(newArrTime);
 
+  let newTrain = $("<td>").text(minUntilNext);
+
+  let nextArrival = $("<td>").text(newArrTime);
+   //appends all the values and colomns into the new row
+   newRow.append(newName, newDestination, newMin, nextArrival, newTrain);
+   //and then adds them to the table body
+   $("tbody").append(newRow);
+  
 });

@@ -37,7 +37,7 @@ label{
 }
 
 input{
-    background-color:black !important; 
+    background-color:rgb(15, 15, 15) !important; 
     border: none !important;
     color: white !important;
     outline-color: #88d3ce solid !important;
